@@ -70,6 +70,24 @@ textarea{
 <div class="card">
 <form id="testForm">
 
+  <h2>Informations du candidat</h2>
+
+<div class="q">
+  <label>Nom et prénom</label>
+  <input type="text" id="nom" name="nom" required>
+</div>
+
+<div class="q">
+  <label>Téléphone</label>
+  <input type="tel" id="tel" name="tel" placeholder="+221..." required>
+</div>
+
+<div class="q">
+  <label>Email</label>
+  <input type="email" id="email" name="email">
+</div>
+
+
 <!-- PARTIE 1 -->
 <h2>PARTIE 1 – Grammaire avancée (15 pts)</h2>
 
@@ -143,52 +161,71 @@ It helps them find jobs, study abroad and communicate worldwide.
 <!-- JS -->
 <script>
 
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbwSOEQ6ns1_LYetTN_dcQQWB1pNb_gnJl6WRlDUegEPUwqXmYcEssFNNf8SAtWQXFG44w/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbygu4uzVSM9j4BXIh_58uAPEQi4Ay5_N10An4yWtCNvo7Zihuzavocj2Od6rH2jzjAMHw/exec";
 
 const answers = {
   q1:'a', q2:'b', q3:'a', q4:'a', q5:'a', q6:'b'
 };
 
 function corriger(){
-  let score=0;
-  const data={};
 
-  for(let q in answers){
-    const el=document.querySelector(`input[name="${q}"]:checked`);
-    data[q]=el ? el.value : "";
-    if(el && el.value===answers[q]) score+=5;
+  // 🔹 Récupération infos candidat
+  const nom = document.getElementById("nom").value.trim();
+  const tel = document.getElementById("tel").value.trim();
+  const email = document.getElementById("email").value.trim();
+
+  if(!nom || !tel){
+    alert("Veuillez renseigner le nom et le téléphone");
+    return;
   }
 
-  data.q7=document.getElementById('q7').value;
+  let score = 0;
+  const data = {};
 
-  const text=data.q7.toLowerCase();
+  // 🔹 QCM
+  for(let q in answers){
+    const el = document.querySelector(`input[name="${q}"]:checked`);
+    data[q] = el ? el.value : "";
+    if(el && el.value === answers[q]) score += 5;
+  }
+
+  // 🔹 Expression écrite
+  data.q7 = document.getElementById("q7").value;
+
+  const text = data.q7.toLowerCase();
   if(text.includes("english")) score++;
-  if(text.includes("future")||text.includes("job")||text.includes("study")) score++;
+  if(text.includes("future") || text.includes("job") || text.includes("study")) score++;
 
-  let level="";
-  if(score<15) level="Collège";
-  else if(score<25) level="Seconde / Première";
-  else if(score<35) level="Terminale";
-  else level="Terminale + / Post-bac";
+  // 🔹 Niveau
+  let level = "";
+  if(score < 15) level = "Collège";
+  else if(score < 25) level = "Seconde / Première";
+  else if(score < 35) level = "Terminale";
+  else level = "Terminale + / Post-bac";
 
-  // AFFICHAGE
-  const r=document.getElementById('result');
-  r.hidden=false;
-  r.innerHTML=`
+  // 🔹 Affichage
+  const r = document.getElementById("result");
+  r.hidden = false;
+  r.innerHTML = `
     <h3>Résultat</h3>
     <p>Score : <strong>${score}/40</strong></p>
     <p>Niveau estimé : <strong>${level}</strong></p>
   `;
 
-  // ENVOI VERS GOOGLE SHEETS
-  fetch(SHEET_URL,{
-    method:"POST",
-    body:JSON.stringify({
+  // 🔹 Envoi vers Google Sheets
+  fetch(SHEET_URL, {
+    method: "POST",
+    body: JSON.stringify({
+      nom,
+      tel,
+      email,
       score,
       level,
       ...data
     })
-  });
+  })
+  .then(()=>console.log("Données envoyées"))
+  .catch(err=>console.error("Erreur Sheets", err));
 }
 </script>
 
