@@ -2,246 +2,135 @@
 <html lang="fr">
 <head>
 <meta charset="utf-8">
+<title>Test de positionnement – Anglais</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Test de positionnement — Anglais (Terminale)</title>
-
 <style>
-body{
-  font-family: Arial, sans-serif;
-  background:#f4f6f9;
-  margin:0;
-  font-size:18px;
-}
-header{
-  background:#0ea5a4;
-  color:white;
-  padding:20px;
-}
-.container{
-  max-width:900px;
-  margin:auto;
-  padding:20px;
-}
-.card{
-  background:white;
-  padding:20px;
-  border-radius:10px;
-  box-shadow:0 4px 10px rgba(0,0,0,.1);
-}
-.q{
-  margin-bottom:18px;
-  padding:12px;
-  background:#f9fafb;
-  border-radius:6px;
-}
-label{display:block;margin:6px 0}
-button{
-  padding:12px 18px;
-  font-size:16px;
-  background:#0ea5a4;
-  color:white;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-}
-textarea{
-  width:100%;
-  min-height:120px;
-  font-size:16px;
-}
-#result{
-  margin-top:20px;
-  padding:15px;
-  background:#e7f9f7;
-  border-radius:8px;
-}
+body{font-family:Arial;background:#f4f6f9;font-size:18px}
+header{background:#0ea5a4;color:#fff;padding:20px}
+.container{max-width:1000px;margin:auto;padding:20px}
+.card{background:#fff;padding:20px;border-radius:10px}
+.q{margin-bottom:15px;background:#f9fafb;padding:10px;border-radius:6px}
+button{background:#0ea5a4;color:#fff;padding:12px 18px;border:0;border-radius:6px;cursor:pointer}
+textarea{width:100%;min-height:120px}
+#result{background:#e7f9f7;padding:15px;border-radius:8px;margin-top:15px}
+h1{font-size:20px;margin-bottom:6px}
 </style>
 </head>
-
 <body>
 
-<button onclick="exportPDF()" style="margin:15px">Exporter en PDF</button>
+<button onclick="exportPDF()">Exporter en PDF</button>
 
-<header>
-  <h1>Test de positionnement en Anglais – Niveau Terminale</h1>
-</header>
+<header><h1>Test de positionnement – Anglais</h1></header>
 
-<div class="container">
-<div class="card">
-<form id="testForm">
+<div class="container"><div class="card">
 
-  <h2>Informations du candidat</h2>
+<form>
+<h3>Informations du candidat</h3>
+<div class="q"><input id="nom" placeholder="Nom et prénom" required></div>
+<div class="q"><input id="tel" placeholder="Téléphone" required></div>
+<div class="q"><input id="email" placeholder="Email"></div>
 
-<div class="q">
-  <label>Nom et prénom</label>
-  <input type="text" id="nom" name="nom" required>
-</div>
+<h3>Questions</h3>
+<div class="q">1. She ___ here since 2018. (5 pts)<br>
+<input type="radio" name="q1" value="a"> has lived<br>
+<input type="radio" name="q1" value="b"> is living<br>
+<input type="radio" name="q1" value="c"> lives</div>
 
-<div class="q">
-  <label>Téléphone</label>
-  <input type="tel" id="tel" name="tel" placeholder="+221..." required>
-</div>
+<div class="q">2. If I ___ more time, I would travel. (5 pts) <br>
+<input type="radio" name="q2" value="a"> have
+<input type="radio" name="q2" value="b"> had
+<input type="radio" name="q2" value="c"> will have</div>
 
-<div class="q">
-  <label>Email</label>
-  <input type="email" id="email" name="email">
-</div>
+<div class="q">3. They built the bridge in 2010. Into Passsive Voice. <br>(5 pts)
+<input type="radio" name="q3" value="a"> The bride was built
+<input type="radio" name="q3" value="b"> The bridge is built
+<input type="radio" name="q3" value="c"> The bridge has built</div>
+
+<div class="q">4. "Give up" means: (5 pts)<br>
+<input type="radio" name="q4" value="a"> abandon
+<input type="radio" name="q4" value="b"> continue
+<input type="radio" name="q4" value="c"> start</div>
+
+<div class="q">5. Correct expression: (5 pts)<br>
+<input type="radio" name="q5" value="a"> make a decision
+<input type="radio" name="q5" value="b"> do a decision
+<input type="radio" name="q5" value="c"> take a decide</div>
+
+<div class="q">6. Why learn English? (5 pts)<br>
+<input type="radio" name="q6" value="a"> Exams
+<input type="radio" name="q6" value="b"> Career & communication
+<input type="radio" name="q6" value="c"> Travel</div>
 
 
-<!-- PARTIE 1 -->
-<h2>PARTIE 1 – Grammaire avancée (15 pts)</h2>
+<div class="q">7. Mum takes  ___ her baby. (5 pts)<br>
+<input type="radio" name="q7" value="a"> care<br>
+<input type="radio" name="q7" value="a"> out<br>
+<input type="radio" name="q7" value="b"> up</div>
 
-<div class="q">
-<label>1. She ___ here since 2018.</label>
-<label><input type="radio" name="q1" value="a"> has lived</label>
-<label><input type="radio" name="q1" value="b"> is living</label>
-<label><input type="radio" name="q1" value="c"> lives</label>
-</div>
-
-<div class="q">
-<label>2. If I ___ more time, I would travel.</label>
-<label><input type="radio" name="q2" value="a"> have</label>
-<label><input type="radio" name="q2" value="b"> had</label>
-<label><input type="radio" name="q2" value="c"> will have</label>
-</div>
-
-<div class="q">
-<label>3. Passive voice :</label>
-<p><em>They built the bridge in 2010.</em></p>
-<label><input type="radio" name="q3" value="a"> was built</label>
-<label><input type="radio" name="q3" value="b"> is built</label>
-<label><input type="radio" name="q3" value="c"> has built</label>
-</div>
-
-<!-- PARTIE 2 -->
-<h2>PARTIE 2 – Vocabulaire & expressions (10 pts)</h2>
-
-<div class="q">
-<label>4. “Give up” signifie :</label>
-<label><input type="radio" name="q4" value="a"> abandonner</label>
-<label><input type="radio" name="q4" value="b"> continuer</label>
-<label><input type="radio" name="q4" value="c"> décider</label>
-</div>
-
-<div class="q">
-<label>5. Expression correcte :</label>
-<label><input type="radio" name="q5" value="a"> make a decision</label>
-<label><input type="radio" name="q5" value="b"> do a decision</label>
-<label><input type="radio" name="q5" value="c"> take a decide</label>
-</div>
-
-<!-- PARTIE 3 -->
-<h2>PARTIE 3 – Compréhension écrite (10 pts)</h2>
-
-<p>
-Many students believe that learning English is essential today.
-It helps them find jobs, study abroad and communicate worldwide.
-</p>
-
-<div class="q">
-<label>6. Why is English important?</label>
-<label><input type="radio" name="q6" value="a"> Only for exams</label>
-<label><input type="radio" name="q6" value="b"> For opportunities and communication</label>
-<label><input type="radio" name="q6" value="c"> Only for travel</label>
-</div>
-
-<!-- PARTIE 4 -->
-<h2>PARTIE 4 – Expression écrite (5 pts)</h2>
+<div class="q"> Expression écrite (5 pts):<br>
 <p>Write 5–6 lines: <strong>Why is learning English important for your future?</strong></p>
-<textarea id="q7"></textarea>
+<textarea id="q8"></textarea></div>
 
-<button type="button" onclick="corriger()">Corriger</button>
-
-<div id="result" hidden></div>
-
+<button type="button" onclick="corriger()">Valider</button>
+<div id="result"></div>
 </form>
-</div>
-</div>
+</div></div>
 
-<!-- JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
 <script>
-
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbygu4uzVSM9j4BXIh_58uAPEQi4Ay5_N10An4yWtCNvo7Zihuzavocj2Od6rH2jzjAMHw/exec";
-
+const SHEET_URL="https://script.google.com/macros/s/AKfycby9hDe4Wb6bnlDJOtXDfFFCUa9kvI7oFdx71sNq4ACgKivJKNTXPQMRuPMDkwwZoq4PGQ/exec";
 const answers = {
-  q1:'a', q2:'b', q3:'a', q4:'a', q5:'a', q6:'b'
+  q1:'a',
+  q2:'b',
+  q3:'a',
+  q4:'a',
+  q5:'a',
+  q6:'b',
+  q7:'a'
 };
 
+
 function corriger(){
-
-  // 🔹 Récupération infos candidat
-  const nom = document.getElementById("nom").value.trim();
-  const tel = document.getElementById("tel").value.trim();
-  const email = document.getElementById("email").value.trim();
-
-  if(!nom || !tel){
-    alert("Veuillez renseigner le nom et le téléphone");
-    return;
-  }
-
   let score = 0;
-  const data = {};
+  let data = {};
 
-  // 🔹 QCM
   for(let q in answers){
-    const el = document.querySelector(`input[name="${q}"]:checked`);
-    data[q] = el ? el.value : "";
-    if(el && el.value === answers[q]) score += 5;
+    let e = document.querySelector(`input[name="${q}"]:checked`);
+    if(e){
+      data[q] = e.value;
+      if(e.value === answers[q]) score += 5;
+    }
   }
 
-  // 🔹 Expression écrite
-  data.q7 = document.getElementById("q7").value;
+  data.q8 = document.getElementById("q8").value;
 
-  const text = data.q7.toLowerCase();
-  if(text.includes("english")) score++;
-  if(text.includes("future") || text.includes("job") || text.includes("study")) score++;
+  let level =
+    score < 15 ? "Level 1" :
+    score < 25 ? "Level 2" :
+    score < 35 ? "Level 3" : "Post-bac";
 
-  // 🔹 Niveau
-  let level = "";
-  if(score < 15) level = "Collège";
-  else if(score < 25) level = "Seconde / Première";
-  else if(score < 35) level = "Terminale";
-  else level = "Terminale + / Post-bac";
+  result.innerHTML = `Score: <b>${score}</b><br>Niveau: <b>${level}</b>`;
 
-  // 🔹 Affichage
-  const r = document.getElementById("result");
-  r.hidden = false;
-  r.innerHTML = `
-    <h3>Résultat</h3>
-    <p>Score : <strong>${score}/40</strong></p>
-    <p>Niveau estimé : <strong>${level}</strong></p>
-  `;
-
-  // 🔹 Envoi vers Google Sheets
-  fetch(SHEET_URL, {
-    method: "POST",
-    body: JSON.stringify({
-      nom,
-      tel,
-      email,
+  fetch(SHEET_URL,{
+    method:'POST',
+    body:JSON.stringify({
+      nom:nom.value,
+      tel:tel.value,
+      email:email.value,
       score,
       level,
       ...data
     })
-  })
-  .then(()=>console.log("Données envoyées"))
-  .catch(err=>console.error("Erreur Sheets", err));
+  });
 }
-</script>
 
-<!-- PDF -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script>
-async function exportPDF(){
-  const {jsPDF}=window.jspdf;
-  const canvas=await html2canvas(document.body,{scale:3});
-  const img=canvas.toDataURL("image/png");
-  const pdf=new jsPDF("p","mm","a4");
-  pdf.addImage(img,"PNG",5,5,200,0);
-  pdf.save("test-anglais-terminale.pdf");
-}
-</script>
 
+async function exportPDF(){const{jsPDF}=window.jspdf;const c=await html2canvas(document.body,{scale:3});const pdf=new jsPDF();pdf.addImage(c.toDataURL(),'PNG',5,5,200,0);pdf.save('test-anglais.pdf')}
+</script>
 </body>
 </html>
+```
+
+
