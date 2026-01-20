@@ -11,7 +11,7 @@ header{background:#0ea5a4;color:#fff;padding:20px}
 .container{max-width:1000px;margin:auto;padding:20px}
 .card{background:#fff;padding:20px;border-radius:10px}
 .q{margin-bottom:15px;background:#f9fafb;padding:10px;border-radius:6px}
-button{background:#0ea5a4;color:#fff;padding:12px 18px;border:0;border-radius:6px;cursor:pointer}
+button{background:#0ea5a4;color:#fff;padding:12px 18px;border:0;border-radius:6px;cursor:pointer;margin-top:10px}
 textarea{width:100%;min-height:120px}
 #result{background:#e7f9f7;padding:15px;border-radius:8px;margin-top:15px}
 label{display:block;margin:6px 0}
@@ -30,7 +30,7 @@ h2{margin-top:25px}
 <div class="container">
 <div class="card">
 
-<form>
+<form id="testForm">
 
 <h2>Informations du candidat</h2>
 <div class="q"><input id="nom" placeholder="Nom et prénom" required></div>
@@ -105,7 +105,7 @@ h2{margin-top:25px}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
 <script>
-const SHEET_URL = "https://script.google.com/macros/s/AKfycbxihUiSdStyfXQzshqm2k-zqmrGUa5tW11uf-PtdLw_hlJgtqDrzEAt5riO4pfua4YXSw/exec";
+const SHEET_URL = "https://script.google.com/macros/s/AKfycbwMYVhAPEmh7-RA9i0vrpJiyhITA2gb8-QdaqEcc2cbTmcjz-Q50B04ct0zb-Akg3iKFQ/exec";
 
 const answers = {
   q1:'a',
@@ -121,6 +121,7 @@ function corriger(){
   let score = 0;
   let data = {};
 
+  // Calcul du score
   for(let q in answers){
     let e = document.querySelector(`input[name="${q}"]:checked`);
     if(e){
@@ -139,30 +140,32 @@ function corriger(){
   document.getElementById("result").innerHTML =
     `Score : <b>${score}</b><br>Niveau : <b>${level}</b>`;
 
+  // Envoi des données vers Google Sheets
   fetch(SHEET_URL, {
-  method: "POST",
-  headers: {
-    "Content-Type": "application/json"
-  },
-  body: JSON.stringify({
-    nom: nom.value,
-    tel: tel.value,
-    email: email.value,
-    score: score,
-    level: level,
-    q1: data.q1 || "",
-    q2: data.q2 || "",
-    q3: data.q3 || "",
-    q4: data.q4 || "",
-    q5: data.q5 || "",
-    q6: data.q6 || "",
-    q7: data.q7 || "",
-    q8: data.q8 || ""
+    method: "POST",
+    headers: {"Content-Type": "application/json"},
+    body: JSON.stringify({
+      nom: document.getElementById("nom").value,
+      tel: document.getElementById("tel").value,
+      email: document.getElementById("email").value,
+      score: score,
+      level: level,
+      q1: data.q1 || "",
+      q2: data.q2 || "",
+      q3: data.q3 || "",
+      q4: data.q4 || "",
+      q5: data.q5 || "",
+      q6: data.q6 || "",
+      q7: data.q7 || "",
+      q8: data.q8 || ""
+    })
   })
-});
+  .then(res => res.text())
+  .then(txt => alert("Réponses enregistrées avec succès !"))
+  .catch(err => alert("Erreur lors de l'envoi : " + err));
 }
 
-
+// Export PDF
 async function exportPDF(){
   const { jsPDF } = window.jspdf;
   const zone = document.querySelector(".container");
