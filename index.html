@@ -139,25 +139,29 @@ function corriger(){
   document.getElementById("result").innerHTML =
     `Score : <b>${score}</b><br>Niveau : <b>${level}</b>`;
 
-  fetch(SHEET_URL,{
-    method:"POST",
-    body:JSON.stringify({
-      nom: nom.value,
-      tel: tel.value,
-      email: email.value,
-      score: score,
-      level: level,
-      q1: data.q1,
-      q2: data.q2,
-      q3: data.q3,
-      q4: data.q4,
-      q5: data.q5,
-      q6: data.q6,
-      q7: data.q7,
-      q8: data.q8
-    })
-  });
+  fetch(SHEET_URL, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json"
+  },
+  body: JSON.stringify({
+    nom: nom.value,
+    tel: tel.value,
+    email: email.value,
+    score: score,
+    level: level,
+    q1: data.q1 || "",
+    q2: data.q2 || "",
+    q3: data.q3 || "",
+    q4: data.q4 || "",
+    q5: data.q5 || "",
+    q6: data.q6 || "",
+    q7: data.q7 || "",
+    q8: data.q8 || ""
+  })
+});
 }
+
 
 async function exportPDF(){
   const { jsPDF } = window.jspdf;
